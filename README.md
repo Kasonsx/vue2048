@@ -3,9 +3,10 @@ The Game 2048 developed by vue.
 The origin project is [vue-2048](https://github.com/pengfu/vue-2048).  
 I used Vue-cli 3.0 to rewrite this project and used vue-touch to add swipe action.
 
-Demo: https://kasonsx.github.io/vue2048/
+### Demo
+https://kasonsx.github.io/vue2048/
 
-First Blood: 
+### First Blood
 ![Victory Photo](./src/assets/victory.JPG)
 
 ## Project setup

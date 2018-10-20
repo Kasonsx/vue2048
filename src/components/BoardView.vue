@@ -64,6 +64,7 @@ export default {
     onRestart() {
       this.board = new Board();
       this.time = 0;
+      this.addTime();
     },
     // 0 -> left, 1 -> up, 2 -> right, 3 -> down
     onSwipeLeft() {

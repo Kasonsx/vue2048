@@ -3,13 +3,14 @@
             v-on:swiperight="onSwipeRight"
             v-on:swipeup="onSwipeUp"
             v-on:swipedown="onSwipeDown">
-        <p>得分：{{ score }}</p>
+        <p>Score：{{ score }}<span style="float: right">Time:  {{ time }}s</span></p>
         <div class="board" tabIndex="1">
             <div v-for="r_item in board.cells" :key="r_item.key">
                 <cell v-for="c_item in r_item" :key="c_item.key"></cell>
             </div>
             <tile-view v-for="tile in tiles" :tile="tile" :key="tile.id"></tile-view>
             <game-end-overlay :board="board" :on-restart="onRestart"></game-end-overlay>
+            <game-start v-on:count-time="addTime"></game-start>
         </div>
         <br>
         <p>备注：PC端使用键盘方向键操作</p>
@@ -21,21 +22,32 @@
 import Cell from "./Cell.vue";
 import TileView from "./TileView.vue";
 import GameEndOverlay from "./GameEndOverlay.vue";
+import GameStart from "./GameStart.vue";
 import { Board } from "../board";
 
 export default {
   components: {
     Cell,
     TileView,
-    GameEndOverlay
+    GameEndOverlay,
+    GameStart
   },
   data() {
     return {
       board: new Board(),
-      score: 0
+      score: 0,
+      time: 0
     };
   },
   methods: {
+    addTime() {
+      var clock = setInterval(() => {
+        this.time += 1;
+        if(this.board.hasWon()){
+          clearInterval(clock);
+        }
+      }, 1000);
+    },
     handleKeyDown(event) {
       if (this.board.hasWon()) {
         return;

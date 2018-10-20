@@ -128,14 +128,14 @@ Board.prototype.addRandomTile = function () {
     for (var r = 0; r < Board.size; ++r) {
         for (var c = 0; c < Board.size; ++c) {
             if (this.cells[r][c].value == 0) {
-                emptyCells.push({ r: r, c: c });
+                emptyCells.push({ subRow: r, subColumn: c });
             }
         }
     }
     var index = ~~(Math.random() * emptyCells.length);//~~取整
     var cell = emptyCells[index];
     var newValue = Math.random() < Board.fourProbability ? 4 : 2;
-    this.cells[cell.r][cell.c] = this.addTile(newValue);
+    this.cells[cell.subRow][cell.subColumn] = this.addTile(newValue);
     this.score += newValue;
 };
 //标记删除

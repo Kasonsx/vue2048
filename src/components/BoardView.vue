@@ -43,7 +43,7 @@ export default {
     addTime() {
       var clock = setInterval(() => {
         this.time += 1;
-        if(this.board.hasWon()){
+        if(this.board.hasWon() || this.board.hasLost()){
           clearInterval(clock);
         }
       }, 1000);

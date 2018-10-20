@@ -13,7 +13,7 @@
             <game-start v-on:count-time="addTime"></game-start>
         </div>
         <br>
-        <p>备注：PC端使用键盘方向键操作</p>
+        <p>备注：PC端按F12调整大小,使用键盘方向键操作</p>
         
     </v-touch>
 </template>
@@ -36,15 +36,17 @@ export default {
     return {
       board: new Board(),
       score: 0,
-      time: 0
+      time: 0,
+      timer: null,
     };
   },
   methods: {
     addTime() {
-      var clock = setInterval(() => {
+      this.timer = setInterval(() => {
         this.time += 1;
         if(this.board.hasWon() || this.board.hasLost()){
-          clearInterval(clock);
+          clearInterval(this.timer);
+          this.timer = null;
         }
       }, 1000);
     },
@@ -61,6 +63,7 @@ export default {
     },
     onRestart() {
       this.board = new Board();
+      this.time = 0;
     },
     // 0 -> left, 1 -> up, 2 -> right, 3 -> down
     onSwipeLeft() {

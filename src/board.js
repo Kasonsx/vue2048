@@ -60,6 +60,11 @@ Tile.prototype.hasMoved = function () {
         || this.mergedInto;
 }
 
+var Cell = function (subRow, subColumn) {
+    this.subRow = subRow;
+    this.subColumn = subColumn;
+}
+
 //面板
 var Board = function () {
     this.tiles = []
@@ -124,17 +129,18 @@ Board.prototype.setPositions = function () {
 Board.fourProbability = 0.1;
 //将2或4随机加入到空格上
 Board.prototype.addRandomTile = function () {
-    var emptyCells = [];
-    for (var r = 0; r < Board.size; ++r) {
-        for (var c = 0; c < Board.size; ++c) {
+    let emptyCells = [];
+    for (let r = 0; r < Board.size; ++r) {
+        for (let c = 0; c < Board.size; ++c) {
             if (this.cells[r][c].value == 0) {
-                emptyCells.push({ subRow: r, subColumn: c });
+                //let subCell = { subRow: r, subColumn: c }
+                emptyCells.push(new Cell(r, c));
             }
         }
     }
-    var index = ~~(Math.random() * emptyCells.length);//~~取整
-    var cell = emptyCells[index];
-    var newValue = Math.random() < Board.fourProbability ? 4 : 2;
+    let index = ~~(Math.random() * emptyCells.length);//~~取整
+    let cell = emptyCells[index];
+    let newValue = Math.random() < Board.fourProbability ? 4 : 2;
     this.cells[cell.subRow][cell.subColumn] = this.addTile(newValue);
     this.score += newValue;
 };

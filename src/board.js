@@ -140,9 +140,12 @@ Board.prototype.addRandomTile = function () {
     }
     let index = ~~(Math.random() * emptyCells.length);//~~取整
     let cell = emptyCells[index];
-    let newValue = Math.random() < Board.fourProbability ? 4 : 2;
-    this.cells[cell.subRow][cell.subColumn] = this.addTile(newValue);
-    this.score += newValue;
+    if (cell) {
+        let newValue = Math.random() < Board.fourProbability ? 4 : 2;
+        this.cells[cell.subRow][cell.subColumn] = this.addTile(newValue);
+        this.score += newValue;
+    }
+
 };
 //标记删除
 Board.prototype.clearOldTiles = function () {

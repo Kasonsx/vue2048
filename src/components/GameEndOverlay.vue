@@ -1,6 +1,8 @@
 <template>
     <div class="overlay" v-show="show">
-        <p class="message">{{ contents }}</p>
+        <span class="message">Score: {{ gameScore }}</span>
+        <span class="message">Time: {{ gameTime }}s</span>
+        <span class="message">{{ contents }}</span><br>
         <button class="tryAgain" @click="restart">Try again</button>
     </div>
 </template>
@@ -30,11 +32,11 @@ export default {
       return this.board.hasWon() || this.board.hasLost();
     },
     contents() {
-      let result = `Score: ${this.gameScore}\n Time: ${this.gameTime}\n`;
+      //let result = `Score: ${this.gameScore}\n Time: ${this.gameTime}\n`;
       if (this.board.hasWon()) {
-        return result + "Good job!";
+        return "Good job!";
       } else if (this.board.hasLost()) {
-        return result + "Game Over";
+        return "Game Over!";
       } else {
         return "";
       }

@@ -3,6 +3,7 @@
             v-on:swiperight="onSwipeRight"
             v-on:swipeup="onSwipeUp"
             v-on:swipedown="onSwipeDown">
+        <br><br>
         <p>Score：{{ score }}<span style="float: right">Time:  {{ time }}s</span></p>
         <div class="board" tabIndex="1">
             <div v-for="r_item in board.cells" :key="r_item.key">

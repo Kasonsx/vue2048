@@ -105,7 +105,7 @@ Board.prototype.moveLeft = function () {
             }
             resultRow[target] = targetTile;
             this.won |= (targetTile.value == 2048);
-            hasChanged |= (target.value != this.cells[row][target].value);
+            hasChanged |= (targetTile.value != this.cells[row][target].value);
 
         }
         this.cells[row] = resultRow;

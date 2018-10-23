@@ -15,6 +15,14 @@ export default {
     onRestart: {
       type: Function,
       required: true
+    },
+    gameTime: {
+      type: Number,
+      required: true
+    },
+    gameScore: {
+      type: Number,
+      required: true
     }
   },
   computed: {
@@ -22,10 +30,11 @@ export default {
       return this.board.hasWon() || this.board.hasLost();
     },
     contents() {
+      let result = `Score: ${this.gameScore}\n Time: ${this.gameTime}\n`;
       if (this.board.hasWon()) {
-        return "Good job!";
+        return result + "Good job!";
       } else if (this.board.hasLost()) {
-        return "Game Over";
+        return result + "Game Over";
       } else {
         return "";
       }

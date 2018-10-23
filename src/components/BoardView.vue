@@ -9,7 +9,7 @@
                 <cell v-for="c_item in r_item" :key="c_item.key"></cell>
             </div>
             <tile-view v-for="tile in tiles" :tile="tile" :key="tile.id"></tile-view>
-            <game-end-overlay :board="board" :on-restart="onRestart"></game-end-overlay>
+            <game-end-overlay :board="board" :on-restart="onRestart" :game-time="time" :game-score="score"></game-end-overlay>
             <game-start v-on:count-time="addTime"></game-start>
         </div>
         <br>
